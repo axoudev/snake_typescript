@@ -1,0 +1,132 @@
+* {
+  margin: 0;
+  padding: 0;
+  white-space: 0;
+  font-family: sans-serif;
+}
+
+@font-face {
+  font-family: "rimouski";
+  src: url("../resources/fonts/rimouski.otf");
+}
+
+html {
+  background-color: #74b9ff;
+}
+
+html body #start-menu {
+  position: absolute;
+  background-color: #74b9ff;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+html body #start-menu h1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 25%;
+  font-family: "rimouski";
+  font-size: 5em;
+  color: #dfe6e9;
+  text-shadow: 4px 3px 0px #b2bec3, 9px 8px 0px rgba(0, 0, 0, 0.15);
+}
+
+html body #start-menu #options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 60%;
+}
+
+html body #start-menu #options .option {
+  -ms-flex-preferred-size: 33.33%;
+      flex-basis: 33.33%;
+}
+
+html body #start-menu #options .option:nth-child(1) h2 {
+  color: #fdcb6e;
+}
+
+html body #start-menu #options .option:nth-child(2) h2 {
+  color: #e17055;
+}
+
+html body #start-menu #options .option:nth-child(3) h2 {
+  color: #e84393;
+}
+
+html body #start-menu #options .option h2 {
+  height: 10%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 1.5em;
+  font-family: "rimouski";
+}
+
+html body #start-menu #options .option .buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 90%;
+}
+
+html body #start-menu #options .option .buttons button {
+  width: 50%;
+  border-radius: 0%;
+  border: none;
+  height: 10%;
+  margin: 2%;
+}
+
+html body #start-menu #options .option span {
+  color: #636e72;
+}
+
+html body #start-menu #start {
+  height: 15%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+html body #start-menu #start button {
+  width: 50%;
+  height: 50%;
+  border: none;
+  border-radius: 0%;
+}
+
+html body #canvas {
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  display: block;
+}
+/*# sourceMappingURL=style.css.map */

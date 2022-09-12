@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Snake</title>
+</head>
+<body>
+    <section id="start-menu">
+        <h1>Axel's Snake !</h1>
+        <section id=options>
+            <section id="speed" class="option">
+                <h2>Speed</h2>
+                <section class="buttons">
+                    <button onclick="settings.speed = 200; setActive(this);">
+                        Slow
+                    </button>
+                    <button class="default-active" onclick="settings.speed = 100; setActive(this);">
+                        Medium
+                    </button>
+                    <button onclick="settings.speed = 60; setActive(this);">
+                        Fast
+                    </button>
+                    <button onclick="settings.speed = 30; setActive(this);">
+                        Light speed
+                    </button>
+                </section>
+            </section>
+            <section id = size class="option">
+                <h2>Snake's size</h2>
+                <section class="buttons">
+                    <button onclick="settings.snakeSize = 1; setActive(this);">
+                        Baby snake
+                    </button>
+                    <button class="default-active" onclick="settings.snakeSize = 3; setActive(this);">
+                        Teenage snake
+                    </button>
+                    <button onclick="settings.snakeSize = 10; setActive(this);">
+                        Adult snake
+                    </button>
+                    <button onclick="settings.snakeSize = 20; setActive(this);">
+                        Old snake
+                    </button>
+                </section>
+            </section>
+            <section id="mode" class="option">
+                <h2>Mode</h2>
+                <section class="buttons">
+                    <button onclick="settings.player = 'user'; setActive(this);" class="default-active">
+                        Standard
+                    </button>
+                    <button onclick="settings.player = 'ai'; setActive(this);">
+                        Computer playing alone (bêta)
+                    </button>
+                    <span>
+                        More modes comming soon !
+                    </span>
+                </section>
+            </section>
+        </section>
+        <section id="start">
+            <button onclick="start();">
+                start
+            </button>
+        </section>
+    </section>
+    <section>
+        <canvas id="canvas"></canvas>
+    </section>
+    <script
+			  src="https://code.jquery.com/jquery-3.6.0.min.js"
+			  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			  crossorigin="anonymous"></script>
+    <script src="./js/Computer.js"></script>
+    <script src="./js/mobileDetector.js"></script>
+    <script src="./js/startMenuButtons.js"></script>
+    <script src="./js/Settings.js"></script>
+    <script src="./js/Case.js"></script>
+    <script src="./js/Food.js"></script>
+    <script src="./js/Board.js"></script>
+    <script src="./js/Dir.js"></script>
+    <script src="./js/Pos.js"></script>
+    <script src="./js/Snake.js"></script>
+    <script src="./js/program.js"></script>
+</body>
+</html>

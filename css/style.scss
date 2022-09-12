@@ -1,0 +1,99 @@
+*{
+    margin: 0;
+    padding: 0;
+    white-space: 0;
+    font-family: sans-serif;
+}
+
+@font-face {
+    font-family: "rimouski";
+    src: url("../resources/fonts/rimouski.otf");
+}
+
+html{
+    background-color: #74b9ff;
+    body{
+        #start-menu{
+            position: absolute;
+            background-color: #74b9ff;
+            width: 100vw;
+            height: 100vh;
+            max-width: 100%;
+            max-height: 100%;
+            h1{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 25%;
+                font-family: "rimouski";
+                font-size: 5em;
+                color: #dfe6e9;
+                text-shadow: 4px 3px 0px #b2bec3, 9px 8px 0px rgba(0,0,0,0.15);
+            }
+            #options{
+                display: flex;
+                height:60%;
+                .option{
+                    &:nth-child(1){
+                        h2{
+                            color: #fdcb6e;
+                        }
+                    }
+                    &:nth-child(2){
+                        h2{
+                            color: #e17055;
+                        }
+                    }
+                    &:nth-child(3){
+                        h2{
+                            color: #e84393;
+                        }
+                    }
+                    flex-basis: 33.33%;
+                    h2{
+                        height: 10%;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        font-size: 1.5em;
+                        font-family: "rimouski";
+                    }
+                    .buttons{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        height: 90%;
+                        button{
+                            width: 50%;
+                            border-radius: 0%;
+                            border: none;
+                            height: 10%;
+                            margin: 2%;
+                        }
+                    }
+                    span{
+                        color: #636e72;
+                    }
+                }
+            }
+            #start{
+                height: 15%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                button{
+                    width: 50%;
+                    height: 50%;
+                    border:none;
+                    border-radius: 0%;
+                }
+            }
+        }
+        #canvas{
+            width: 100vw;
+            height:100vh;
+            max-width: 100%;
+            display: block;
+        }
+    }
+}
