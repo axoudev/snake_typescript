@@ -1,26 +1,44 @@
-let settings = new Settings(speed = 100, snakeSize = 3, player = 'user');
-let board;
-let snake;
-let foods;
-let computer;
+console.log('terst')
+import { Board } from "./Board";
+import { Case } from "./Case";
+import { Computer } from "./Computer";
+import { Dir } from "./Dir";
+import { Food } from "./Food";
+import { Pos } from "./Pos";
+import { Settings } from "./Settings";
+import { Snake } from "./Snake";
+
+let board: Board;
+let snake: Snake;
+let computer: Computer;
+let foods: Food[];
+let speed: number;
+let snakeSize: number;
+let player: string;
+let settings: Settings = new Settings(speed = 100, snakeSize = 3, player = 'user');
+
+console.log("testS")
 
 document.addEventListener("keydown", newDir);
 
-let isGameOver = false;
+let isGameOver: Boolean = false;
 
 /**
  * Lance le jeu avec les parametres choisis
  */
 function start(){
+    let foodPosition: number[];
+
     isGameOver = false;
-    board = new Board(background = "#74b9ff", has_border = true);
-    snake = new Snake(speed = settings.speed, step = 20, length = settings.snakeSize, position = new Pos(400,100), direction = new Dir(1,0), dimension = 20, color = "#55efc4", borderColor = "#00b894");
+    board = new Board("#74b9ff", true);
+    snake = new Snake(settings.speed, 20, settings.snakeSize, new Pos(400,100), new Dir(1,0), 20,  "#55efc4", "#00b894");
     foods = [];
-    pos = notOnSnakePosition();
-    foods.push(new Food(pos = new Pos(pos[0], pos[1]), dim = 20, color = "#ff7675", borderColor = "#d63031", points = 1, addCases = 1));
+    foodPosition = notOnSnakePosition();
+    foods.push(new Food(new Pos(foodPosition[0], foodPosition[1]), 20, "#ff7675", "#d63031", 1, 1));
     if(settings.player == "ai"){
         computer = new Computer(1, foods, snake.cases);
     }
+
     $("#start-menu").slideUp("fast", function(){
         main();
     });
@@ -45,10 +63,10 @@ function main(){
 
 /**
  * Permet d'avoir un entier aléatoire entre 0 et un entier maximum qui soit un multiple de la dimension du Serpent.
- * @param {Number} max Le nombre entier maximum
- * @returns {Number} Nombre entier aléatoire
+ * @param {number} max Le nombre entier maximum
+ * @returns {number} Nombre entier aléatoire
  */
- function getRandomInt(max) {
+ function getRandomInt(max: number): number {
     return Math.floor(Math.random() * max/snake.dimension)*snake.dimension;
 }
 
@@ -86,6 +104,7 @@ function drawFoods(){
  * Ajoute des cases au Serpent.
  */
 function checkFoodCollision(){
+    let pos: number[];
     for(let food in foods){
         if(rectCollide(snake.cases[0], foods[food])){
             pos = notOnSnakePosition();
@@ -98,15 +117,18 @@ function checkFoodCollision(){
 
 /**
  * Trouve une position qui n'est pas sur le Snake
- * @returns Tableau d'entiers contenant les positions x et y. 
+ * @returns {number[]} Tableau d'entiers contenant les positions x et y. 
  */
-function notOnSnakePosition(){
-    let onSnake;
+function notOnSnakePosition(): number[]{
+    let onSnake: boolean;
+    let x: number;
+    let y: number;
+
     do{
         onSnake = false;
         x = getRandomInt(board.canvas.width-5);
         y = getRandomInt(board.canvas.height-5);
-        for(element in snake.cases){
+        for(let element in snake.cases){
             if(snake.cases[element].position.posX == x && snake.cases[element].position.posY == y){
                 onSnake = true;
             }
@@ -131,7 +153,7 @@ function checkBorderCollision(){
  * Game over si collision.
  */
 function checkSelfCollision(){
-    for(i = 3; i < snake.cases.length; i++){
+    for(let i = 3; i < snake.cases.length; i++){
         if(rectCollide(snake.cases[0], snake.cases[i])){
             gameOver();
         }
@@ -142,9 +164,9 @@ function checkSelfCollision(){
  * Detecte si deux rectangles entrent en collision
  * @param {Case} rect1 un objet de type Case
  * @param {Case} rect2 un objet de type Case
- * @returns true si collision, false si pas de collision
+ * @returns {Boolean} true si collision, false si pas de collision
  */
-function rectCollide (rect1, rect2){
+function rectCollide (rect1: Case, rect2: Case): Boolean{
     return (rect1.position.posX < rect2.position.posX + rect2.dimension &&
             rect1.position.posX + rect1.dimension > rect2.position.posX &&
             rect1.position.posY < rect2.position.posY + rect2.dimension &&
@@ -169,36 +191,29 @@ function rectCollide (rect1, rect2){
 /**
  * Change de direction en fonction de la touche qui à été appuyée.
  * recomence le jeu losque le joueur appuies sur la touche espace quand il y a Game Over
- * @param {Event} e 
+ * @param {KeyboardEvent} e 
  */
-function newDir(e){
-    const LEFT_KEY = 37;
-    const RIGHT_KEY = 39;
-    const UP_KEY = 38;
-    const DOWN_KEY = 40;
-    const SPACE_KEY = 32;
-    const O_KEY = 79;
-
+function newDir(e: KeyboardEvent){
     if(snake.nbMoveSinceLastDirection > 0 && settings.player == 'user'){ // empêche de se retourner sur lui-même
-        if (e.keyCode === LEFT_KEY){
+        if (e.key === "left"){
             if (snake.direction.dirX != 1){
                 snake.newDir(-1, 0);
             }
         }
     
-        if (e.keyCode === RIGHT_KEY){
+        if (e.key === "right"){
             if (snake.direction.dirX != -1){
                 snake.newDir(1, 0);
             }
         }
     
-        if (e.keyCode === UP_KEY){
+        if (e.key === "up"){
             if (snake.direction.dirY != 1){
                 snake.newDir(0,-1);
             }
         }
     
-        if (e.keyCode === DOWN_KEY){
+        if (e.key=== "down"){
             if (snake.direction.dirY != -1){
                 snake.newDir(0,1);
             }
@@ -206,7 +221,7 @@ function newDir(e){
     }
 
     if(isGameOver){
-        if(e.keyCode === SPACE_KEY){
+        if(e.key === "space"){
             start();
             // board = new Board(background = "#74b9ff", has_border = true);
             // snake = new Snake(speed = settings.speed, step = 20, length = settings.snakeSize, position = new Pos(400,100), direction = new Dir(1,0), dimension = 20, color = "#55efc4", borderColor = "#00b894");
@@ -216,7 +231,7 @@ function newDir(e){
             // isGameOver = false;
             // main();
         }
-        if(e.keyCode === O_KEY){
+        if(e.key === "o"){
             $("#start-menu").slideDown();
         }
     }

@@ -1,11 +1,20 @@
-class Computer{
-    constructor(level, foods, cases){
+import { Case } from "./Case";
+import { Food } from "./Food";
+import { Snake } from "./Snake";
+
+export class Computer{
+    level: number;
+    foods: Food[];
+    cases: Case[];
+    nearestFood: Food;
+
+    constructor(level: number, foods: Food[], cases: Case[]){
         this.level = level;
         this.nearestFood = this.getNearestFood(foods, cases);
     }
 
-    getNearestFood(foods, cases){
-        if(foods.lenght == 1){
+    getNearestFood(foods: Food[], cases: Case []){
+        if(foods.length == 1){
             return foods[0];
         }
         let distanceX = Math.abs(cases[0].position.posX - foods[0].position.posX);
@@ -14,7 +23,7 @@ class Computer{
         let smallerDistance = distance;
         let nearest = foods[0];
         
-        for(let i = 1; i < foods.lenght; i++){
+        for(let i = 1; i < foods.length; i++){
             let distanceX = Math.abs(cases[0].position.posX - foods[i].position.posX);
             let distanceY = Math.abs(cases[0].position.posY - foods[i].position.posY);
             distance = distanceX + distanceY;
@@ -28,7 +37,7 @@ class Computer{
         return nearest;
     }
 
-    choseDirection(snake){
+    choseDirection(snake: Snake){
         let distanceX = snake.cases[0].position.posX - this.nearestFood.position.posX;
         let distanceY = snake.cases[0].position.posY - this.nearestFood.position.posY;
         let dX = distanceX/Math.abs(distanceX)*-1;
